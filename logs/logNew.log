@@ -1,0 +1,92 @@
+Using CATALINA_BASE:   "C:\Users\79198\AppData\Local\JetBrains\IntelliJIdea2022.2\tomcat\eddf13d3-d66a-4796-ae04-9121bda56d32"
+Using CATALINA_HOME:   "E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86"
+Using CATALINA_TMPDIR: "E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86\temp"
+Using JRE_HOME:        "C:\Program Files\Java\jdk-17.0.3"
+Using CLASSPATH:       "E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86\bin\bootstrap.jar;E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86\bin\tomcat-juli.jar"
+Using CATALINA_OPTS:   ""
+NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+26-Mar-2024 22:41:35.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log �?мя версии сервера:    Apache Tomcat/9.0.86
+26-Mar-2024 22:41:35.715 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Сервер собран:         Feb 14 2024 08:15:12 UTC
+26-Mar-2024 22:41:35.715 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Номер версии сервера:  9.0.86.0
+26-Mar-2024 22:41:35.715 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+26-Mar-2024 22:41:35.716 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Версия ОС:             10.0
+26-Mar-2024 22:41:35.716 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Архитектура:           amd64
+26-Mar-2024 22:41:35.716 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-17.0.3
+26-Mar-2024 22:41:35.716 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Версия JVM:            17.0.3+8-LTS-111
+26-Mar-2024 22:41:35.716 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Производитель JVM:     Oracle Corporation
+26-Mar-2024 22:41:35.716 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\79198\AppData\Local\JetBrains\IntelliJIdea2022.2\tomcat\eddf13d3-d66a-4796-ae04-9121bda56d32
+26-Mar-2024 22:41:35.716 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86
+26-Mar-2024 22:41:35.717 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+26-Mar-2024 22:41:35.717 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+26-Mar-2024 22:41:35.717 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+26-Mar-2024 22:41:35.718 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+26-Mar-2024 22:41:35.718 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+26-Mar-2024 22:41:35.718 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\79198\AppData\Local\JetBrains\IntelliJIdea2022.2\tomcat\eddf13d3-d66a-4796-ae04-9121bda56d32\conf\logging.properties
+26-Mar-2024 22:41:35.718 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+26-Mar-2024 22:41:35.718 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote=
+26-Mar-2024 22:41:35.718 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.port=1099
+26-Mar-2024 22:41:35.719 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.ssl=false
+26-Mar-2024 22:41:35.719 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.password.file=C:\Users\79198\AppData\Local\JetBrains\IntelliJIdea2022.2\tomcat\eddf13d3-d66a-4796-ae04-9121bda56d32\jmxremote.password
+26-Mar-2024 22:41:35.719 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcom.sun.management.jmxremote.access.file=C:\Users\79198\AppData\Local\JetBrains\IntelliJIdea2022.2\tomcat\eddf13d3-d66a-4796-ae04-9121bda56d32\jmxremote.access
+26-Mar-2024 22:41:35.719 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.rmi.server.hostname=127.0.0.1
+26-Mar-2024 22:41:35.719 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+26-Mar-2024 22:41:35.720 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+26-Mar-2024 22:41:35.720 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+26-Mar-2024 22:41:35.720 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\79198\AppData\Local\JetBrains\IntelliJIdea2022.2\tomcat\eddf13d3-d66a-4796-ae04-9121bda56d32
+26-Mar-2024 22:41:35.720 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86
+26-Mar-2024 22:41:35.720 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86\temp
+26-Mar-2024 22:41:35.727 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [C:\Program Files\Java\jdk-17.0.3\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Java\jdk-17.0.3\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\apache-maven-3.8.8-bin\apache-maven-3.8.8\\bin;C:\Program Files\PuTTY\;C:\Users\79198\AppData\Local\Microsoft\WindowsApps;;C:\Users\79198\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2022.2\bin;;.]
+26-Mar-2024 22:41:35.923 INFO [main] org.apache.coyote.AbstractProtocol.init �?нициализация ProtocolHandler ["http-nio-8080"]
+26-Mar-2024 22:41:35.947 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [452] milliseconds
+26-Mar-2024 22:41:36.008 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+26-Mar-2024 22:41:36.009 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.86]
+26-Mar-2024 22:41:36.027 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+26-Mar-2024 22:41:36.082 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [134] milliseconds
+Connected to server
+26-Mar-2024 22:41:39.214 INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+22:41:39,315 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+22:41:39,315 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.groovy]
+22:41:39,316 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/E:/IntellijIdea/alishevSpring/CRUDApp/target/CRUDApp/WEB-INF/classes/logback.xml]
+22:41:39,379 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - debug attribute not set
+22:41:39,389 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+22:41:39,396 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [FILE-AUDIT]
+22:41:39,468 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@736575286 - No compression will be used
+22:41:39,470 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@736575286 - Will use the pattern E:/IntellijIdea/alishevSpring/CRUDApp/logs1/archived/debug.%d{yyyy-MM-dd}.%i.log for the active file
+22:41:39,473 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@541d5ebf - The date pattern is 'yyyy-MM-dd' from file name pattern 'E:/IntellijIdea/alishevSpring/CRUDApp/logs1/archived/debug.%d{yyyy-MM-dd}.%i.log'.
+22:41:39,473 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@541d5ebf - Roll-over at midnight.
+22:41:39,474 |-INFO in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@541d5ebf - Setting initial period to Tue Mar 26 22:08:14 SAMT 2024
+22:41:39,475 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@541d5ebf - SizeAndTimeBasedFNATP is deprecated. Use SizeAndTimeBasedRollingPolicy instead
+22:41:39,475 |-WARN in ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP@541d5ebf - For more information see http://logback.qos.ch/manual/appenders.html#SizeAndTimeBasedRollingPolicy
+22:41:39,479 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[FILE-AUDIT] - Active log file name: E:/IntellijIdea/alishevSpring/CRUDApp/logs1/debug.log
+22:41:39,479 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[FILE-AUDIT] - File property is set to [E:/IntellijIdea/alishevSpring/CRUDApp/logs1/debug.log]
+22:41:39,481 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+22:41:39,483 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [STDOUT]
+22:41:39,483 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+22:41:39,488 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [ru.darin.springcourse] to INFO
+22:41:39,488 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting additivity of logger [ru.darin.springcourse] to false
+22:41:39,488 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [FILE-AUDIT] to Logger[ru.darin.springcourse]
+22:41:39,489 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[ru.darin.springcourse]
+22:41:39,489 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to INFO
+22:41:39,489 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [FILE-AUDIT] to Logger[ROOT]
+22:41:39,489 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+22:41:39,490 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@459ad3d2 - Registering current configuration as safe fallback point
+
+ERROR StatusLogger No log4j2 configuration file found. Using default configuration: logging only errors to the console.
+26-Mar-2024 22:41:46.033 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployDirectory Установка веб приложения в папку [E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86\webapps\manager]
+26-Mar-2024 22:41:46.123 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86\webapps\manager] has finished in [89] ms
+26.03.2024 22:41:52.310 [http-nio-8080-exec-8] INFO  r.d.s.dao.PersonDAO - Hello
+26.03.2024 22:41:52.314 [http-nio-8080-exec-8] INFO  r.d.s.dao.PersonDAO - Hi from Sl4fj
+Using CATALINA_BASE:   "C:\Users\79198\AppData\Local\JetBrains\IntelliJIdea2022.2\tomcat\eddf13d3-d66a-4796-ae04-9121bda56d32"
+Using CATALINA_HOME:   "E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86"
+Using CATALINA_TMPDIR: "E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86\temp"
+Using JRE_HOME:        "C:\Program Files\Java\jdk-17.0.3"
+Using CLASSPATH:       "E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86\bin\bootstrap.jar;E:\IntellijIdea\alishevSpring\apache-tomcat-9.0.86\bin\tomcat-juli.jar"
+Using CATALINA_OPTS:   ""
+NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+26-Mar-2024 22:42:41.341 INFO [main] org.apache.catalina.core.StandardServer.await A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+26-Mar-2024 22:42:41.342 INFO [main] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+26-Mar-2024 22:42:41.350 INFO [main] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+26-Mar-2024 22:42:41.359 WARNING [main] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [ROOT] registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+26-Mar-2024 22:42:41.363 INFO [main] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+26-Mar-2024 22:42:41.373 INFO [main] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+Disconnected from server

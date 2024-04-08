@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--  скорее всего данная кодировка здесь указывается просто в качестве информации для браузера
+  основные настройки используемой кодировки идут в SpringConfig-->
+    <meta charset="UTF-8">
+    <title>Создать Администратора</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/admin/add}">
+    <label for="person">Выбрать человека:</label>
+    <select th:object="${person}" th:field="*{id}" id="person">
+        <!--    th:value - самый важный атрибут. Он показывает какое значение будет отправляться на сервер
+            при выборе какого-нибудь человека из списка-->
+        <option th:each="person : ${people}" th:value="${person.getId()}"
+                th:text="${person.getSurname()}"></option>
+    </select>
+
+    <input type="submit" value="Создать Администратора"/>
+</form>
+
+</body>
+</html>

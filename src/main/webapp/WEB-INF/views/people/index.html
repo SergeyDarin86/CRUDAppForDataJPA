@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- мы должны указать, что используем Thymeleaf -->
+<!--html-форма в Thymeleaf принимает на вход объект, для которого она собственно и создана
+т.е. если мы его (Thymeleaf) используем, то должны внедрить объект в контроллере-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>People</title>
+</head>
+<body>
+
+<!-- аналог forEach для Thymeleaf-->
+<div th:each="person: ${people}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getPerson_name()
+    + ', ' + person.getSurname()
+    + ', ' + person.getAge()
+    + '|| ' + person.getEmail()
+    + '|| ' + person.getAddress()}">user</a>
+
+</div>
+
+<br/>
+<hr/>
+
+<a href="/people/new">Create new person</a>
+
+</body>
+</html>

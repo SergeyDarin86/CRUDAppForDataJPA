@@ -1,0 +1,14 @@
+logging:
+  level:
+    ru.darin.springcource:
+    org:
+      springframework: ${LOG:info}
+
+  file:
+    name: log
+    path=/Users: /logs
+
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
