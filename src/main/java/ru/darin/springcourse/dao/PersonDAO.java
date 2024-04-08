@@ -1,8 +1,6 @@
 package ru.darin.springcourse.dao;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -10,9 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.darin.springcourse.models.Person;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,17 +30,8 @@ public class PersonDAO {
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "16s11w86d";
 
-    private static final Logger logger = LoggerFactory.getLogger(PersonDAO.class);
-
-    private static final String FILENAME = "/logs/log";
     public List<Person> index() {
-        logger.info("Hello",FILENAME);
         log.info("Hi from Sl4fj");
-//        try {
-//            Files.readAllBytes(Paths.get(FILENAME));
-//        } catch (IOException ioex) {
-//            logger.error("Failed to read file {}.", FILENAME, ioex);
-//        }
         // ROW-маппер - это такой объект, который отображает строки из таблицы в нашей сущности
         // каждую строку из таблицы он переведет в объект класса Person
         // мы создали свой ROW-маппер, но можно было этого и не делать
@@ -53,7 +39,7 @@ public class PersonDAO {
     }
 
     public Person show(int id) {
-        log.info("Hello from Slf4j",FILENAME);
+        log.info("Hello from Slf4j");
         //
         //jdbcTemplate использует по умолчанию preparedStatement, который в свою очередь предотвращает sql-инъекции
         //
