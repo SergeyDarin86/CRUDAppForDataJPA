@@ -31,8 +31,9 @@ public class Person {
     @Column(name = "age")
     private int age;
 
-    @NotEmpty(message = "Address should not be empty")
-    @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message = "Address should have the next format: Country, City, Postal Code(6 numbers)")
+    @NotEmpty(message = "Адрес не должен быть пустым")
+//    @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message = "Address should have the next format: Country, City, Postal Code(6 numbers)")
+//    @Pattern(regexp = "[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+", message = "The Author should have the format: Surname Name")
     @Column(name = "address")
     private String address;
 

@@ -31,25 +31,39 @@ public class PersonDAO {
         return session.createQuery("select p from Person p", Person.class).getResultList();
     }
 
+    @Transactional(readOnly = true)
     public Person show(int id) {
         log.info("Hello from Slf4j");
-        return null;
+        Session session = factory.getCurrentSession();
+
+        return session.get(Person.class, id);
     }
 
+    @Transactional(readOnly = true)
     public Optional<Person> show(String email) {
-        return null;
+        Session session = factory.getCurrentSession();
+        return session.createQuery("select p from Person p where p.email =:email").setParameter("email",email).getResultList().stream().findAny();
     }
 
+    @Transactional
     public void save(Person person) {
-
+        factory.getCurrentSession().persist(person);
     }
 
+    @Transactional
     public void update(int id, Person updatedPerson) {
-        System.out.println(id + " id || " + updatedPerson.getId() + " <-- updatedPerson");
+        Person person = factory.getCurrentSession().get(Person.class,id);
+        person.setAddress(updatedPerson.getAddress());
+        person.setSurname(updatedPerson.getSurname());
+        person.setPerson_name(updatedPerson.getPerson_name());
+        person.setEmail(updatedPerson.getEmail());
+        person.setAge(updatedPerson.getAge());
+        factory.getCurrentSession().update(person);
     }
 
+    @Transactional
     public void delete(int id) {
-
+        factory.getCurrentSession().remove(factory.getCurrentSession().get(Person.class,id));
     }
 
 }
