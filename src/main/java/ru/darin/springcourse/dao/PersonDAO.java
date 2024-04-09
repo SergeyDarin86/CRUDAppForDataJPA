@@ -40,27 +40,16 @@ public class PersonDAO {
 
     public Person show(int id) {
         log.info("Hello from Slf4j");
-        //
-        //jdbcTemplate использует по умолчанию preparedStatement, который в свою очередь предотвращает sql-инъекции
-        //
-
-        // можно также использовать такой порядок аргументов
-//        jdbcTemplate.query("Select * from Person where id=?",new PersonMapper(),id);
-
         return jdbcTemplate.query("Select * from Person where id=?", new BeanPropertyRowMapper<>(Person.class), new Object[]{id})
                 .stream().findAny().orElse(null);
     }
 
-    // перегружаем наш метод show()
     public Optional<Person> show(String email) {
         return jdbcTemplate.query("Select * From Person where email=?", new BeanPropertyRowMapper<>(Person.class), new Object[]{email})
                 .stream().findAny();
     }
 
     public void save(Person person) {
-        // если посмотреть на реализацию метода update, то можно увидеть, что там импользуются Varargs
-        // это значит, что мы можем принимать любое количество аргументов в качестве второго аргумента (после sql-запроса)
-        // и эти аргументы будут рассматриваться как массив
         jdbcTemplate.update("INSERT INTO Person(person_name, surname, email, age, address) VALUES (?,?,?,?,?)",
                 person.getPerson_name(), person.getSurname(), person.getEmail(), person.getAge(), person.getAddress());
     }
@@ -75,18 +64,12 @@ public class PersonDAO {
         jdbcTemplate.update("DELETE FROM Person WHERE id=?", id);
     }
 
-    ////////////////////////////
-    ///// Тестируем производительность пакетной вставки
-    ////////////////////////////
-
     public void testMultipleUpdate() {
         List<Person> people = create1000People();
 
         long start = System.currentTimeMillis();
 
         for (Person person : people) {
-//            jdbcTemplate.update("INSERT INTO Person VALUES (?,?,?,?,?)",
-//                    person.getId(), person.getPerson_name(), person.getSurname(), person.getEmail(), person.getAge());
             save(person);
         }
 
@@ -98,8 +81,6 @@ public class PersonDAO {
     public void testBatchUpdate() {
 
         long start = System.currentTimeMillis();
-
-        //BatchPreparedStatementSetter - это анонимный класс/ интерфейс, который мы можем реализовать прямо здесь
 
         List<Person> people = create1000People();
         jdbcTemplate.batchUpdate("INSERT INTO Person(person_name,surname,email,age) VALUES (?,?,?,?)",
@@ -123,7 +104,6 @@ public class PersonDAO {
 
     }
 
-
     private List<Person> create1000People() {
         List<Person> people = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
@@ -131,6 +111,5 @@ public class PersonDAO {
         }
         return people;
     }
-
 
 }

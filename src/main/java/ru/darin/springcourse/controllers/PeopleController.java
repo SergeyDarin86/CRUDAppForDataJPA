@@ -1,6 +1,5 @@
 package ru.darin.springcourse.controllers;
 
-//import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.darin.springcourse.dao.PersonDAO;
 import ru.darin.springcourse.models.Person;
-import ru.darin.springcourse.services.PersonService;
 import ru.darin.springcourse.util.PersonValidator;
 
 import javax.validation.Valid;
@@ -21,8 +19,6 @@ public class PeopleController {
     private final PersonDAO personDAO;
 
     private final PersonValidator personValidator;
-
-//    private final PersonService personService;
 
     @Autowired  // данную аннотацию можно опустить, т.к. Spring внедрит нашу зависимость и без нее
     public PeopleController(PersonDAO personDAO, PersonValidator personValidator) {
