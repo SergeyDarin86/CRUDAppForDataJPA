@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -15,13 +18,17 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.sql.DataSource;
 import java.util.Objects;
+import java.util.Properties;
 
 @Configuration
 @ComponentScan("ru.darin.springcourse")
 @EnableWebMvc
 // при компиляции файл database.properties также попадает в папку target/classes/ru
-@PropertySource("classpath:database.properties")
-//@PropertySources(value = {@PropertySource(""),@PropertySource("")})
+@PropertySource("classpath:hibernate.properties")
+
+//Теперь все наши транзакции начинаются и заканчиваются Spring'ом
+// мы говорим spring, что доверяем ему управление нашими транзакциями
+@EnableTransactionManagement
 public class SpringConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
@@ -67,29 +74,46 @@ public class SpringConfig implements WebMvcConfigurer {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("org.postgresql.Driver");
-//        dataSource.setUrl("jdbc:postgresql://localhost:5432/first_db");
-//        dataSource.setUsername("postgres");
-//        dataSource.setPassword("16s11w86d");
-
-//        dataSource.setDriverClassName(environment.getProperty("driver")); // можно было бы сделать таким образом
-        dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("driver"))); // используем этот способ, т.к. Driver может быть null и мы по ошибке сможем это понять
-        dataSource.setUrl(environment.getProperty("url"));
-        dataSource.setUsername(environment.getProperty("user_name"));
-        dataSource.setPassword(environment.getProperty("password"));
-
-        //
-//        environment.getProperty("logging.level.org.springframework");
-//        environment.getProperty("logging.file.name");
-//        environment.getProperty("logging.file.path");
-        //
-//        dataSource.setLogWriter("");
+        dataSource.setDriverClassName(environment.getRequiredProperty("hibernate.driver_class"));
+        dataSource.setUrl(environment.getRequiredProperty("hibernate.connection.url"));
+        dataSource.setUsername(environment.getRequiredProperty("hibernate.connection.username"));
+        dataSource.setPassword(environment.getRequiredProperty("hibernate.connection.password"));
         return dataSource;
     }
 
-    // внедряем наш источник данных в jdbcTemplate
-    @Bean
-    public JdbcTemplate jdbcTemplate(){
-        return new JdbcTemplate(dataSource());
+    // Используем Hibernate вместо JDBCTemplate
+
+    // Данный метод не является бином. Он используется для того, чтобы взять данные из нашего файла конфигурации hibernate.properties
+    // далее мы просто возвращаем эти свойства и передаем в нашу фабрику
+    private Properties hibernateProperties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
+        properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
+//        properties.put("hibernate.current_session_context_class",environment.getRequiredProperty("hibernate.current_session_context_class"));
+
+        return properties;
     }
+
+    // создаем фабрику для работы с сущностями (делает это Spring)
+    // указываем пакет, где есть наши сущности, помеченные аннотацией @Entity
+    // передаем наш dataSource() и фабрика знает к какой БД обращаться
+    @Bean
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan("ru.darin.springcourse.models");
+        sessionFactory.setHibernateProperties(hibernateProperties());
+
+        return sessionFactory;
+    }
+
+    // данный бин говорит Spring, как работать с транзакциями
+    @Bean
+    public PlatformTransactionManager hibernateTransactionManager() {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(sessionFactory().getObject());
+
+        return transactionManager;
+    }
+
 }

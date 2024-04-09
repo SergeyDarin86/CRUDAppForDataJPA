@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.darin.springcourse</groupId>
-    <artifactId>CRUDApp</artifactId>
+    <artifactId>CRUDAppForGit</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <properties>
@@ -16,7 +16,7 @@
         <spring.version>5.3.15</spring.version>
     </properties>
 
-    <name>CRUDApp Maven Webapp</name>
+    <name>CRUDAppForGit Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -64,13 +64,18 @@
             <version>6.0.12.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.15.Final</version>
+        </dependency>
 
-        <!--    <dependency>-->
-        <!--      <groupId>jakarta.servlet</groupId>-->
-        <!--      <artifactId>jakarta.servlet-api</artifactId>-->
-        <!--      <version>6.1.0-M2</version>-->
-        <!--      <scope>provided</scope>-->
-        <!--    </dependency>-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -119,6 +124,6 @@
 
     </dependencies>
     <build>
-        <finalName>CRUDApp</finalName>
+        <finalName>CRUDAppForGit</finalName>
     </build>
 </project>
