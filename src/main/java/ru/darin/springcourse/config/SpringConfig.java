@@ -18,13 +18,12 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.sql.DataSource;
-import java.util.Objects;
 import java.util.Properties;
 
 @Configuration
 @ComponentScan("ru.darin.springcourse")
 @EnableWebMvc
-// при компиляции файл database.properties также попадает в папку target/classes/ru
+// при компиляции файл hibernate.properties также попадает в папку target/classes/ru
 @PropertySource("classpath:hibernate.properties")
 
 //Теперь все наши транзакции начинаются и заканчиваются Spring'ом
@@ -79,7 +78,6 @@ public class SpringConfig implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 
-    // чтобы использовать JDBCTemplate (вместо JDBC API), необходимо создать бин
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();

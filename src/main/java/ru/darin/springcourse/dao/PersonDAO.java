@@ -35,10 +35,6 @@ public class PersonDAO {
     public Person show(int id) {
         log.info("Hello from Slf4j");
         Session session = factory.getCurrentSession();
-//        Person person = session.get(Person.class,id);
-//        System.out.println("===================================");
-//        System.out.println(person.getPerson_name());
-//        System.out.println("===================================");
 
         return session.get(Person.class, id);
     }
@@ -62,10 +58,6 @@ public class PersonDAO {
         person.setPerson_name(updatedPerson.getPerson_name());
         person.setEmail(updatedPerson.getEmail());
         person.setAge(updatedPerson.getAge());
-        //
-        System.out.println("===============UpdATE====================");
-        System.out.println("Person from DB " + person.getPerson_name() + ", Updated person" + updatedPerson.getPerson_name());
-        System.out.println("================Update===================");
         factory.getCurrentSession().update(person);
     }
 

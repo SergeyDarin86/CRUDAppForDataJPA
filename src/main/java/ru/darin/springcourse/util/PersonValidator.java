@@ -34,16 +34,12 @@ public class PersonValidator implements Validator {
         Person person = (Person) target;
         System.out.println((person == null) + " - person is null");
 
-        // здесь нам нужно посмотреть, есть ли человек с таким же email в БД
-
         if (personDAO.show(person.getEmail()).isPresent()) {
             if (personDAO.show(person.getEmail()).get().getId() != person.getId()) {
                 errors.rejectValue("email", "", "This email already is used by someone");
             }
         }
 
-
     }
-
 
 }

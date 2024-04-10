@@ -41,8 +41,8 @@ public class MySpringMVCDispatcherServletInitializer extends AbstractAnnotationC
     @Override
     public void onStartup(ServletContext aServletContext) throws ServletException {
         super.onStartup(aServletContext);
-        registerHiddenFieldFilter(aServletContext);
         registerCharacterEncodingFilter(aServletContext);
+        registerHiddenFieldFilter(aServletContext);
     }
 
     // здесь в приватном методе мы добавляем фильтр к нашему приложению
