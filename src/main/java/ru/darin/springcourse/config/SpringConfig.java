@@ -98,9 +98,9 @@ public class SpringConfig implements WebMvcConfigurer {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
-        properties.put("hibernate.connection.characterEncoding",environment.getRequiredProperty("hibernate.connection.characterEncoding"));
+        properties.put("hibernate.connection.CharacterEncoding",environment.getRequiredProperty("hibernate.connection.CharacterEncoding"));
         properties.put("hibernate.connection.CharSet",environment.getRequiredProperty("hibernate.connection.CharSet"));
-        properties.put("hibernate.connection.useUnicode",environment.getRequiredProperty("hibernate.connection.useUnicode"));
+        properties.put("hibernate.connection.UseUnicode",environment.getRequiredProperty("hibernate.connection.UseUnicode"));
 
         return properties;
     }

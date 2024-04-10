@@ -28,7 +28,6 @@ public class PeopleController {
 
     @GetMapping()
     public String index(Model model) {
-//        return personService.getAllPeople(model);
 
         // получим всех людей из DAO и передадим на отображение в представление
         model.addAttribute("people", personDAO.index());
@@ -42,40 +41,11 @@ public class PeopleController {
         return "people/show";
     }
 
-    // при переходе по этому адресу будет создан пустой объект класса Person
-    // соответственно в model будет добавдяться этот объкт person
-//    @GetMapping("/new")
-//    public String newPerson(Model model){
-//        model.addAttribute("person", new Person());
-//        return "people/new";
-//    }
-
-    /**
-     * предыдущий метод с использованием @MA
-     *
-     * @param person
-     * @return
-     */
     @GetMapping("/new")
     public String newPerson(@ModelAttribute Person person) {
         return "people/new";
     }
 
-    // здесь ModelAttribute:
-    // 1) создает объект,
-    // 2) записывает значения в поля этого объекта,
-    // 3) передает в модель
-    // после того как пользователь будет добавлен в базу, мы с помощью redirect(особый механизм)
-    // сделаем переход на другую страницу (/people)
-//    @PostMapping()
-//    public String create(@ModelAttribute("person") Person person){
-//        personDAO.save(person);
-//        return "redirect:/people";
-//    }
-
-    // аннотация Valid проверяет валидность значений, которые указаны над полями в нашей сущности
-    // если есть ошибка, то она помещается в bindingResult (этот объект всегда должен идти за тем классом,
-    // в котором мы поставили аннотацию @Valid)
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
 
