@@ -36,11 +36,6 @@ public class PersonValidator implements Validator {
 
         // здесь нам нужно посмотреть, есть ли человек с таким же email в БД
 
-        // добавил дополнительное условие для того, чтобы при редактировании страницы пользователя не выходило
-        // сообщение об ошибке "Такой email уже используется" - даже если его не трогать
-        // получалась ситуация, что Validator смотрел в базу и видел, что email уже есть
-        // (хотя он относится к редактируемому на данный момент человеку)
-
         if (personDAO.show(person.getEmail()).isPresent()) {
             if (personDAO.show(person.getEmail()).get().getId() != person.getId()) {
                 errors.rejectValue("email", "", "This email already is used by someone");
