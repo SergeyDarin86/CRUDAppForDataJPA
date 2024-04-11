@@ -42,7 +42,7 @@ public class PersonDAO {
     @Transactional(readOnly = true)
     public Optional<Person> show(String email) {
         Session session = factory.getCurrentSession();
-        return session.createQuery("select p from Person p where p.email =:email").setParameter("email",email).getResultList().stream().findAny();
+        return session.createQuery("select p from Person p where p.email =:email").setParameter("email", email).getResultList().stream().findAny();
     }
 
     @Transactional
@@ -52,18 +52,17 @@ public class PersonDAO {
 
     @Transactional
     public void update(int id, Person updatedPerson) {
-        Person person = factory.getCurrentSession().get(Person.class,id);
-        person.setAddress(updatedPerson.getAddress());
-        person.setSurname(updatedPerson.getSurname());
-        person.setPerson_name(updatedPerson.getPerson_name());
-        person.setEmail(updatedPerson.getEmail());
-        person.setAge(updatedPerson.getAge());
-        factory.getCurrentSession().update(person);
+        Person personToBeUpdated = factory.getCurrentSession().get(Person.class, id);
+        personToBeUpdated.setAddress(updatedPerson.getAddress());
+        personToBeUpdated.setSurname(updatedPerson.getSurname());
+        personToBeUpdated.setPerson_name(updatedPerson.getPerson_name());
+        personToBeUpdated.setEmail(updatedPerson.getEmail());
+        personToBeUpdated.setAge(updatedPerson.getAge());
     }
 
     @Transactional
     public void delete(int id) {
-        factory.getCurrentSession().remove(factory.getCurrentSession().get(Person.class,id));
+        factory.getCurrentSession().remove(factory.getCurrentSession().get(Person.class, id));
     }
 
 }
