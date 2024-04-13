@@ -11,7 +11,7 @@
 
 <!-- аналог forEach для Thymeleaf-->
 <div th:each="person: ${people}">
-    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getPerson_name()
+    <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getPersonName()
     + ', ' + person.getSurname()
     + ', ' + person.getAge()
     + '|| ' + person.getEmail()

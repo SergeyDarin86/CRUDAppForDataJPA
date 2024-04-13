@@ -15,7 +15,7 @@ public class Person {
     @NotEmpty(message = "Name should not be empty")
     @Size(min=2,max = 30, message = "Name should be between 2 and 30 characters")
     @Column(name = "person_name")
-    private String person_name;
+    private String personName;
 
     @NotEmpty(message = "Surname should not be empty")
     @Size(min = 2, max = 30, message = "Surname should be between 2 and 30 characters")
@@ -40,8 +40,8 @@ public class Person {
     public Person() {
     }
 
-    public Person(String person_name, String surname, String email, int age, String address) {
-        this.person_name = person_name;
+    public Person(String personName, String surname, String email, int age, String address) {
+        this.personName = personName;
         this.surname = surname;
         this.email = email;
         this.age = age;
@@ -55,12 +55,12 @@ public class Person {
     public void setId(int id){
         this.id = id;
     }
-    public String getPerson_name() {
-        return person_name;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setPerson_name(String person_name) {
-        this.person_name = person_name;
+    public void setPersonName(String person_name) {
+        this.personName = person_name;
     }
 
     public String getSurname() {
@@ -93,5 +93,11 @@ public class Person {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return  "personName= " + personName + ", surname= " + surname + ", email= " + email
+                + ", age= " + age + ", address= " + address;
     }
 }
