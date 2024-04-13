@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
@@ -25,10 +29,10 @@ import java.util.Properties;
 @EnableWebMvc
 // при компиляции файл hibernate.properties также попадает в папку target/classes/ru
 @PropertySource("classpath:hibernate.properties")
-
+@EnableTransactionManagement
+@EnableJpaRepositories("ru.darin.springcourse.repositories")
 //Теперь все наши транзакции начинаются и заканчиваются Spring'ом
 // мы говорим spring, что доверяем ему управление нашими транзакциями
-@EnableTransactionManagement
 public class SpringConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
@@ -96,31 +100,27 @@ public class SpringConfig implements WebMvcConfigurer {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
-        properties.put("hibernate.connection.CharacterEncoding",environment.getRequiredProperty("hibernate.connection.CharacterEncoding"));
-        properties.put("hibernate.connection.CharSet",environment.getRequiredProperty("hibernate.connection.CharSet"));
-        properties.put("hibernate.connection.UseUnicode",environment.getRequiredProperty("hibernate.connection.UseUnicode"));
 
         return properties;
     }
 
-    // создаем фабрику для работы с сущностями (делает это Spring)
-    // указываем пакет, где есть наши сущности, помеченные аннотацией @Entity
-    // передаем наш dataSource() и фабрика знает к какой БД обращаться
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("ru.darin.springcourse.models");
-        sessionFactory.setHibernateProperties(hibernateProperties());
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSource());
+        em.setPackagesToScan("ru.darin.springcourse.models");
 
-        return sessionFactory;
+        final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        em.setJpaVendorAdapter(vendorAdapter);
+        em.setJpaProperties(hibernateProperties());
+
+        return em;
     }
 
-    // данный бин говорит Spring, как работать с транзакциями
     @Bean
-    public PlatformTransactionManager hibernateTransactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
+    public PlatformTransactionManager transactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 
         return transactionManager;
     }

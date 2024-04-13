@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.darin.springcourse.dao.PersonDAO;
 import ru.darin.springcourse.models.Person;
+import ru.darin.springcourse.services.PersonService;
 
 /**
  * Обычно для каждой сущности создается свой валидатор
@@ -15,11 +15,11 @@ import ru.darin.springcourse.models.Person;
 @Component
 public class PersonValidator implements Validator {
 
-    private final PersonDAO personDAO;
+    private final PersonService service;
 
     @Autowired
-    public PersonValidator(PersonDAO personDAO) {
-        this.personDAO = personDAO;
+    public PersonValidator(PersonService service) {
+        this.service = service;
     }
 
     // здесь нам необходимо дать понять Spring, к какому классу относится наша валидация
@@ -34,8 +34,8 @@ public class PersonValidator implements Validator {
         Person person = (Person) target;
         System.out.println((person == null) + " - person is null");
 
-        if (personDAO.show(person.getEmail()).isPresent()) {
-            if (personDAO.show(person.getEmail()).get().getId() != person.getId()) {
+        if (service.show(person.getEmail()).isPresent()) {
+            if (service.show(person.getEmail()).get().getId() != person.getId()) {
                 errors.rejectValue("email", "", "This email already is used by someone");
             }
         }

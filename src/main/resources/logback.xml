@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="DEV_HOME" value="E:/IntellijIdea/alishevSpring/CRUDAppForGit/logs" />
+    <property name="DEV_HOME" value="E:/IntellijIdea/alishevSpring/CRUDAppForDataJPA/logs" />
 <!--    <property name="DEV_HOME" value="logs1/app.log" />-->
 
     <appender name="FILE-AUDIT"

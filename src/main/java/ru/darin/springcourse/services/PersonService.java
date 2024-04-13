@@ -1,39 +1,51 @@
 package ru.darin.springcourse.services;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import ru.darin.springcourse.dao.PersonDAO;
+import org.springframework.transaction.annotation.Transactional;
 import ru.darin.springcourse.models.Person;
+import ru.darin.springcourse.repositories.PeopleRepository;
 
-import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
-//TODO: можно сделать контроллер плоский и вынести всю логику в сервис
-@Component
 @Service
+@Transactional(readOnly = true)
 public class PersonService {
 
-//    jdbc:postgresql://localhost:5432/first_db
-    private final PersonDAO personDAO;
+    private final PeopleRepository repository;
 
-    public PersonService(PersonDAO personDAO) {
-        this.personDAO = personDAO;
+    @Autowired
+    public PersonService(PeopleRepository repository) {
+        this.repository = repository;
     }
 
-    public String getAllPeople(Model model) {
-        model.addAttribute("people", personDAO.index());
-        return "people/index";
+    public List<Person> allPeople(){
+        return repository.findAll();
     }
 
-    public String update(Person person, BindingResult bindingResult, int id) {
-        if (bindingResult.hasErrors())
-            return "people/edit";
+    public Person show(Integer id){
+        return repository.findById(id).orElse(null);
+    }
 
-        personDAO.update(id, person);
-        return "redirect:/people";
+    public Optional<Person> show(String email){
+        return repository.findPeopleByEmail(email);
+    }
+
+    @Transactional
+    public void save(Person person){
+        repository.saveAndFlush(person);
+    }
+
+    @Transactional
+    public void delete(Integer id){
+        repository.deleteById(id);
+    }
+
+    @Transactional
+    public void update(Integer id, Person updatedPerson){
+        updatedPerson.setId(id);
+        repository.saveAndFlush(updatedPerson);
     }
 
 }
