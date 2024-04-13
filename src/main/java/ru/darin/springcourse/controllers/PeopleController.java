@@ -1,6 +1,5 @@
 package ru.darin.springcourse.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,15 +27,14 @@ public class PeopleController {
 
     @GetMapping()
     public String index(Model model) {
-
-        // получим всех людей из DAO и передадим на отображение в представление
+        // получаем всех людей из service и передаем на отображение в представление
         model.addAttribute("people", personService.allPeople());
         return "people/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        // получим одного человека по его id из DAO и передадим на отображение в представление
+        // получим одного человека по его id из service и передадим на отображение в представление
         model.addAttribute("person", personService.show(id));
         return "people/show";
     }
@@ -68,7 +66,6 @@ public class PeopleController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                          @PathVariable("id") int id) {
-        System.out.println(person.getId() + " " + person.getEmail() + " || From controller");
         personValidator.validate(person, bindingResult);
 
         if (bindingResult.hasErrors())

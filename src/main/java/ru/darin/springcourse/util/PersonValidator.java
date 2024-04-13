@@ -32,11 +32,10 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
-        System.out.println((person == null) + " - person is null");
 
         if (service.show(person.getEmail()).isPresent()) {
             if (service.show(person.getEmail()).get().getId() != person.getId()) {
-                errors.rejectValue("email", "", "This email already is used by someone");
+                errors.rejectValue("email", "", "Этот email уже кем-то используется");
             }
         }
 
