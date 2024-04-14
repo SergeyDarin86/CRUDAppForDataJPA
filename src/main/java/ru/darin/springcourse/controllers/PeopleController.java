@@ -29,6 +29,11 @@ public class PeopleController {
     public String index(Model model) {
         // получаем всех людей из service и передаем на отображение в представление
         model.addAttribute("people", personService.allPeople());
+
+        personService.findPeopleByPersonNameStartingWith("startingWith");
+        personService.findPeopleByPersonNameStartingWithAndOrderByAge("start");
+        personService.show("email");
+        personService.test();
         return "people/index";
     }
 

@@ -56,4 +56,19 @@ public class PersonService {
         repository.saveAndFlush(updatedPerson);
     }
 
+    public void findPeopleByPersonNameStartingWith(String startingWith){
+        repository.findFirstByPersonNameStartingWith(startingWith);
+    }
+
+    public void findPeopleByPersonNameStartingWithAndOrderByAge(String startingWith){
+        repository.findPeopleByPersonNameStartingWithOrderByAge(startingWith);
+    }
+
+    // мы создали этот метод, потому что будем тестровать методы из репозитория с помощью дебаггера
+    // чтобы не создавать для каждого метода из репо новый метод здесь в сервере,
+    //будет удобно обращаться к ним, находясь в этом методе
+    public void test(){
+        System.out.println("Testing here with debug. Inside hibernate transaction");
+    }
+
 }
