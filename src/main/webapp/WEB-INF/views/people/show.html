@@ -16,6 +16,13 @@ VALUE - можно не писать (показано для нагляднос
 <p th:text="${person.getAddress()}">Value</p>
 <p th:text="${person.getId()}">VALUE</p>
 
+<hr/>
+<p><b>Список покупок:</b></p>
+<tr th:each="item : ${person.getItems()}">
+    <p th:text="${item.getItemName()}"></p>
+</tr>
+<hr/>
+
 <a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
 
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">

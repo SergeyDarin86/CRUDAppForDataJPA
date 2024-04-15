@@ -29,6 +29,9 @@ public class PeopleService {
 
     public Person show(Integer id){
         log.info("PeopleService: start method show(personId); personId is: {}",id);
+        Person person = peopleRepository.findById(id).orElse(null);
+        System.out.println(person.getItems());
+        System.out.println();
         return peopleRepository.findById(id).orElse(null);
     }
 
