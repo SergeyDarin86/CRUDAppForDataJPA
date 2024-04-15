@@ -1,7 +1,10 @@
 package ru.darin.springcourse.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Person")
@@ -36,6 +39,20 @@ public class Person {
 //    @Pattern(regexp = "[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+", message = "The Author should have the format: Surname Name")
     @Column(name = "address")
     private String address;
+
+    @OneToMany(mappedBy = "person")
+    @Cascade(value = {
+            org.hibernate.annotations.CascadeType.PERSIST,
+            org.hibernate.annotations.CascadeType.MERGE})
+    private List<Item> items;
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
     public Person() {
     }

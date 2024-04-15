@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ru.darin.springcourse.models.Person;
-import ru.darin.springcourse.services.PersonService;
+import ru.darin.springcourse.services.PeopleService;
 
 /**
  * Обычно для каждой сущности создается свой валидатор
@@ -15,10 +15,10 @@ import ru.darin.springcourse.services.PersonService;
 @Component
 public class PersonValidator implements Validator {
 
-    private final PersonService service;
+    private final PeopleService service;
 
     @Autowired
-    public PersonValidator(PersonService service) {
+    public PersonValidator(PeopleService service) {
         this.service = service;
     }
 

@@ -6,7 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.darin.springcourse.models.Person;
-import ru.darin.springcourse.services.PersonService;
+import ru.darin.springcourse.services.ItemsService;
+import ru.darin.springcourse.services.PeopleService;
 import ru.darin.springcourse.util.PersonValidator;
 
 import javax.validation.Valid;
@@ -15,32 +16,37 @@ import javax.validation.Valid;
 @RequestMapping("/people")
 public class PeopleController {
 
-    private final PersonService personService;
+    private final PeopleService peopleService;
+
+    private final ItemsService itemsService;
 
     private final PersonValidator personValidator;
 
     @Autowired  // данную аннотацию можно опустить, т.к. Spring внедрит нашу зависимость и без нее
-    public PeopleController(PersonService personService, PersonValidator personValidator) {
-        this.personService = personService;
+    public PeopleController(PeopleService peopleService, ItemsService itemsService, PersonValidator personValidator) {
+        this.peopleService = peopleService;
+        this.itemsService = itemsService;
         this.personValidator = personValidator;
     }
 
     @GetMapping()
     public String index(Model model) {
         // получаем всех людей из service и передаем на отображение в представление
-        model.addAttribute("people", personService.allPeople());
+        model.addAttribute("people", peopleService.allPeople());
 
-        personService.findPeopleByPersonNameStartingWith("startingWith");
-        personService.findPeopleByPersonNameStartingWithAndOrderByAge("start");
-        personService.show("email");
-        personService.test();
+        peopleService.findPeopleByPersonNameStartingWith("startingWith");
+        peopleService.findPeopleByPersonNameStartingWithAndOrderByAge("start");
+        peopleService.show("email");
+        itemsService.findAllByPerson(peopleService.allPeople().get(0));
+
+        peopleService.test();
         return "people/index";
     }
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         // получим одного человека по его id из service и передадим на отображение в представление
-        model.addAttribute("person", personService.show(id));
+        model.addAttribute("person", peopleService.show(id));
         return "people/show";
     }
 
@@ -57,13 +63,13 @@ public class PeopleController {
         if (bindingResult.hasErrors())
             return "people/new";
 
-        personService.save(person);
+        peopleService.save(person);
         return "redirect:/people";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("person", personService.show(id));
+        model.addAttribute("person", peopleService.show(id));
         return "people/edit";
     }
 
@@ -76,13 +82,13 @@ public class PeopleController {
         if (bindingResult.hasErrors())
             return "people/edit";
 
-        personService.update(id, person);
+        peopleService.update(id, person);
         return "redirect:/people";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
-        personService.delete(id);
+        peopleService.delete(id);
         return "redirect:/people";
     }
 
