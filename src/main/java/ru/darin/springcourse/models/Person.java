@@ -1,9 +1,11 @@
 package ru.darin.springcourse.models;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -40,6 +42,17 @@ public class Person {
     @Column(name = "address")
     private String address;
 
+    //TODO: сделать Spring-валидатор для поля дата (ошибка если формат даты неверный)
+    //TODO: попробовать реализовать выбора даты с помощью готового календаря (готовые библиотеки JavaScript)
+
+    @Column(name = "date_of_birth")
+    @Temporal(value = TemporalType.DATE)    // должны выбрать тот тип данных, который используется в БД
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dateOfBirth;
+
+    @Column(name = "created_at")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private Date createdAt;
     @OneToMany(mappedBy = "person")
     @Cascade(value = {
             org.hibernate.annotations.CascadeType.PERSIST,
@@ -110,6 +123,22 @@ public class Person {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @Override
