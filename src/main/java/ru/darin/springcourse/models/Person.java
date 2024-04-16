@@ -15,22 +15,22 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min=2,max = 30, message = "Name should be between 2 and 30 characters")
+    @NotEmpty(message = "Имя не должно быть пустым")
+    @Size(min=2,max = 30, message = "Имя должно содержать от 2 до 30 символов")
     @Column(name = "person_name")
     private String personName;
 
-    @NotEmpty(message = "Surname should not be empty")
-    @Size(min = 2, max = 30, message = "Surname should be between 2 and 30 characters")
+    @NotEmpty(message = "Фамилия не должно быть пустым")
+    @Size(min = 2, max = 30, message = "Фамилия должна содержать от 2 до 30 символов")
     @Column(name = "surname")
     private String surname;
 
-    @NotEmpty(message = "Email should not be empty")
-    @Email(message = "Email should be valid")
+    @NotEmpty(message = "Email не должен быть пустым")
+    @Email(message = "Email должен быть валидным")
     @Column(name = "email")
     private String email;
 
-    @Min(value = 0,message = "The age should be more than 0")
+    @Min(value = 0,message = "Возраст должен быть больше 0")
     @Column(name = "age")
     private int age;
 
