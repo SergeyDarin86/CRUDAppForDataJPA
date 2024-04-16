@@ -1,5 +1,6 @@
 package ru.darin.springcourse.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +10,7 @@ import ru.darin.springcourse.repositories.ItemsRepository;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 public class ItemsService {
@@ -21,6 +23,7 @@ public class ItemsService {
     }
 
     public List<Item> findAllByPerson(Person person){
+        log.info("ItemService: start method findAllByPerson()");
         return itemsRepository.findAllByPerson(person);
     }
 
