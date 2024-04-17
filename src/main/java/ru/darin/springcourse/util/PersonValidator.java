@@ -1,11 +1,17 @@
 package ru.darin.springcourse.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ru.darin.springcourse.models.Person;
 import ru.darin.springcourse.services.PeopleService;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Обычно для каждой сущности создается свой валидатор
@@ -38,6 +44,20 @@ public class PersonValidator implements Validator {
                 errors.rejectValue("email", "", "Этот email уже кем-то используется");
             }
         }
+
+
+        //
+//        if (person.getDateOfBirth() == null)
+//            errors.rejectValue("dateOfBirth","","Format");
+//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//        try {
+//            df.parse(service.getBirthDayOfPerson(person).toString());
+//        } catch (ConversionFailedException e) {
+//            errors.rejectValue("dateOfBirth","","Format");
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+        //
 
     }
 

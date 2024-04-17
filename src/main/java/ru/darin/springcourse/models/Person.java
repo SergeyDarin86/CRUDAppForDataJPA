@@ -22,7 +22,7 @@ public class Person {
     @Column(name = "person_name")
     private String personName;
 
-    @NotEmpty(message = "Фамилия не должно быть пустым")
+    @NotEmpty(message = "Фамилия не должна быть пустой")
     @Size(min = 2, max = 30, message = "Фамилия должна содержать от 2 до 30 символов")
     @Column(name = "surname")
     private String surname;
@@ -48,6 +48,8 @@ public class Person {
     @Column(name = "date_of_birth")
     @Temporal(value = TemporalType.DATE)    // должны выбрать тот тип данных, который используется в БД
     @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @NotNull(message = "Дата рождения не должна быть пустой")
+    @Past(message = "Дата рождения должны быть в прошлом")
     private Date dateOfBirth;
 
     @Column(name = "created_at")
