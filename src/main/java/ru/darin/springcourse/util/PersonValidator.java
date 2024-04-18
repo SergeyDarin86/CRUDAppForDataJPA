@@ -1,5 +1,6 @@
 package ru.darin.springcourse.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ import java.util.Date;
  */
 
 @Component
+@Slf4j
 public class PersonValidator implements Validator {
 
     private final PeopleService service;
@@ -38,6 +40,7 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
+        log.info("PersonValidator: start method validate(person, errors); person is: {}", person);
 
         if (service.show(person.getEmail()).isPresent()) {
             if (service.show(person.getEmail()).get().getId() != person.getId()) {
@@ -45,6 +48,10 @@ public class PersonValidator implements Validator {
             }
         }
 
+//        if (){
+//            System.out.println(errors.getFieldError());
+////            errors.rejectValue("dateOfBirth","","Format");
+//        }
 
         //
 //        if (person.getDateOfBirth() == null)

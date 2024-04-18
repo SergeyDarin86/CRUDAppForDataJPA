@@ -19,10 +19,19 @@ VALUE - можно не писать (показано для нагляднос
 <p th:text="${person.getCreatedAt()}">VALUE</p>
 
 <hr/>
-<p><b>Список покупок:</b></p>
+
+<tr th:if="${person.getItems().size()==0}">
+    <p style="font-weight: bold"> Человек пока не сделал ни одного заказа </p>
+</tr>
+
+<tr th:if="${person.getItems().size()!=0}">
+    <p style="font-weight: bold">Список покупок:</p>
+</tr>
+
 <tr th:each="item : ${person.getItems()}">
     <p th:text="${item.getItemName()}"></p>
 </tr>
+
 <hr/>
 
 <a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>

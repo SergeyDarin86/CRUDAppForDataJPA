@@ -146,6 +146,6 @@ public class Person {
     @Override
     public String toString() {
         return  "personName= " + personName + ", surname= " + surname + ", email= " + email
-                + ", age= " + age + ", address= " + address;
+                + ", age= " + age + ", address= " + address + ", dateOfBirth= " + dateOfBirth;
     }
 }

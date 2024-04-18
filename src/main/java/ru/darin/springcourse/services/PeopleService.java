@@ -76,5 +76,4 @@ public class PeopleService {
         System.out.println("Testing here with debug. Inside hibernate transaction");
     }
 
-
 }
