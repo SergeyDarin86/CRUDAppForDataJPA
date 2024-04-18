@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.darin.springcourse.models.Mood;
 import ru.darin.springcourse.models.Person;
 import ru.darin.springcourse.repositories.PeopleRepository;
 
@@ -45,6 +46,8 @@ public class PeopleService {
     public void save(Person person){
         log.info("PeopleService: start method save(person); personName is: {}; personAge is: {}",person.getPersonName(),person.getAge());
         person.setCreatedAt(new Date());
+        person.setMood(Mood.SAD);
+        person.setMoodString(Mood.SAD);
         peopleRepository.saveAndFlush(person);
     }
 

@@ -2,6 +2,8 @@ package ru.darin.springcourse.models;
 
 import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
+import ru.darin.springcourse.util.DateOfBirth;
+import ru.darin.springcourse.util.Year;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -48,18 +50,45 @@ public class Person {
     @Column(name = "date_of_birth")
     @Temporal(value = TemporalType.DATE)    // должны выбрать тот тип данных, который используется в БД
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @NotNull(message = "Дата рождения не должна быть пустой")
+//    @NotNull(message = "Дата рождения не должна быть пустой")
     @Past(message = "Дата рождения должны быть в прошлом")
+//    @Year(value = 2000, message = "должен быть 2000")
+//    @DateOfBirth()
     private Date dateOfBirth;
 
     @Column(name = "created_at")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "mood")
+    private Mood mood;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "mood_string")
+    private Mood moodString;
+
+    public Mood getMoodString() {
+        return moodString;
+    }
+
+    public void setMoodString(Mood moodString) {
+        this.moodString = moodString;
+    }
+
     @OneToMany(mappedBy = "person")
     @Cascade(value = {
             org.hibernate.annotations.CascadeType.PERSIST,
             org.hibernate.annotations.CascadeType.MERGE})
     private List<Item> items;
+
+    public Mood getMood() {
+        return mood;
+    }
+
+    public void setMood(Mood mood) {
+        this.mood = mood;
+    }
 
     public List<Item> getItems() {
         return items;

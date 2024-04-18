@@ -23,7 +23,7 @@ public class ItemsService {
     }
 
     public List<Item> findAllByPerson(Person person){
-        log.info("ItemService: start method findAllByPerson()");
+        log.info("ItemService: start method findAllByPerson(person); person is: {}", person);
         return itemsRepository.findAllByPerson(person);
     }
 
