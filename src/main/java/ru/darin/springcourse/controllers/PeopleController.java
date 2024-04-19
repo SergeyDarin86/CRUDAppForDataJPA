@@ -32,14 +32,14 @@ public class PeopleController {
     @GetMapping()
     public String index(Model model) {
         // получаем всех людей из service и передаем на отображение в представление
-//        model.addAttribute("people", peopleService.allPeople());
-//
-//        peopleService.findPeopleByPersonNameStartingWith("startingWith");
-//        peopleService.findPeopleByPersonNameStartingWithAndOrderByAge("start");
-//        peopleService.show("email");
-//        itemsService.findAllByPerson(peopleService.allPeople().get(0));
-//
-//        peopleService.test();
+        model.addAttribute("people", peopleService.allPeople());
+
+        peopleService.findPeopleByPersonNameStartingWith("startingWith");
+        peopleService.findPeopleByPersonNameStartingWithAndOrderByAge("start");
+        peopleService.show("email");
+        itemsService.findAllByPerson(peopleService.allPeople().get(0));
+
+        peopleService.test();
         peopleService.testNPlus1();
         return "people/index";
     }
@@ -47,7 +47,8 @@ public class PeopleController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         // получим одного человека по его id из service и передадим на отображение в представление
-        model.addAttribute("person", peopleService.show(id));
+//        model.addAttribute("person", peopleService.show(id));
+        peopleService.showWithLoad(id);
         return "people/show";
     }
 

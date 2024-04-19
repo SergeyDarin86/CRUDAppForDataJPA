@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.darin.springcourse.models.Item;
 import ru.darin.springcourse.models.Mood;
 import ru.darin.springcourse.models.Person;
 import ru.darin.springcourse.repositories.PeopleRepository;
@@ -37,6 +38,13 @@ public class PeopleService {
         Person person = peopleRepository.findById(id).orElse(null);
         System.out.println(person.getItems());
         return peopleRepository.findById(id).orElse(null);
+    }
+
+    public void showWithLoad(int id){
+        Session session = entityManager.unwrap(Session.class);
+        Person personProxy = session.load(Person.class,id);
+        System.out.println("После получения proxy-объекта");
+        System.out.println(personProxy.getEmail());
     }
 
     public Optional<Person> show(String email){
@@ -82,7 +90,7 @@ public class PeopleService {
     }
 
     public void testNPlus1(){
-        Session session = entityManager.unwrap(Session.class);
+        Session session = entityManager.unwrap(Session.class);  // получаем нашу Hibernate-сессию
         List<Person>personList = session.createQuery("select p from Person p LEFT JOIN FETCH p.items").getResultList();
         Set<Person> people = new HashSet<>(personList);
         for (Person person: people)
