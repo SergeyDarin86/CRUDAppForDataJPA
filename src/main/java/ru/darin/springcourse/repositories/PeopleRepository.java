@@ -20,5 +20,4 @@ public interface PeopleRepository extends JpaRepository<Person, Integer> {
     @Transactional
     @Query(value = "select * from person left outer join item i on person.id = i.person_id", nativeQuery = true)
     List<Person> findAllWithLeftJoin();
-
 }
