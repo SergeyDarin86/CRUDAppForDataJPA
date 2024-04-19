@@ -32,14 +32,15 @@ public class PeopleController {
     @GetMapping()
     public String index(Model model) {
         // получаем всех людей из service и передаем на отображение в представление
-        model.addAttribute("people", peopleService.allPeople());
-
-        peopleService.findPeopleByPersonNameStartingWith("startingWith");
-        peopleService.findPeopleByPersonNameStartingWithAndOrderByAge("start");
-        peopleService.show("email");
-        itemsService.findAllByPerson(peopleService.allPeople().get(0));
-
-        peopleService.test();
+//        model.addAttribute("people", peopleService.allPeople());
+//
+//        peopleService.findPeopleByPersonNameStartingWith("startingWith");
+//        peopleService.findPeopleByPersonNameStartingWithAndOrderByAge("start");
+//        peopleService.show("email");
+//        itemsService.findAllByPerson(peopleService.allPeople().get(0));
+//
+//        peopleService.test();
+        peopleService.testNPlus1();
         return "people/index";
     }
 

@@ -1,6 +1,7 @@
 package ru.darin.springcourse.services;
 
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,9 +9,8 @@ import ru.darin.springcourse.models.Mood;
 import ru.darin.springcourse.models.Person;
 import ru.darin.springcourse.repositories.PeopleRepository;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import javax.persistence.EntityManager;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -19,9 +19,12 @@ public class PeopleService {
 
     private final PeopleRepository peopleRepository;
 
+    private final EntityManager entityManager;
+
     @Autowired
-    public PeopleService(PeopleRepository peopleRepository) {
+    public PeopleService(PeopleRepository peopleRepository, EntityManager entityManager) {
         this.peopleRepository = peopleRepository;
+        this.entityManager = entityManager;
     }
 
     public List<Person> allPeople(){
@@ -33,7 +36,6 @@ public class PeopleService {
         log.info("PeopleService: start method show(personId); personId is: {}",id);
         Person person = peopleRepository.findById(id).orElse(null);
         System.out.println(person.getItems());
-        System.out.println();
         return peopleRepository.findById(id).orElse(null);
     }
 
@@ -77,6 +79,14 @@ public class PeopleService {
     //будет удобно обращаться к ним, находясь в этом методе
     public void test(){
         System.out.println("Testing here with debug. Inside hibernate transaction");
+    }
+
+    public void testNPlus1(){
+        Session session = entityManager.unwrap(Session.class);
+        List<Person>personList = session.createQuery("select p from Person p LEFT JOIN FETCH p.items").getResultList();
+        Set<Person> people = new HashSet<>(personList);
+        for (Person person: people)
+            System.out.println("Person is - " + person.getPersonName() + " has " + person.getItems());
     }
 
 }
