@@ -47,7 +47,7 @@ public class PeopleController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         // получим одного человека по его id из service и передадим на отображение в представление
-//        model.addAttribute("person", peopleService.show(id));
+        model.addAttribute("person", peopleService.show(id));
         peopleService.showWithLoad(id);
         return "people/show";
     }

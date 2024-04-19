@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Person")
@@ -176,5 +177,18 @@ public class Person {
     public String toString() {
         return  "personName= " + personName + ", surname= " + surname + ", email= " + email
                 + ", age= " + age + ", address= " + address + ", dateOfBirth= " + dateOfBirth;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id && age == person.age && Objects.equals(personName, person.personName) && Objects.equals(surname, person.surname) && Objects.equals(email, person.email) && Objects.equals(address, person.address) && Objects.equals(dateOfBirth, person.dateOfBirth) && Objects.equals(createdAt, person.createdAt) && mood == person.mood && moodString == person.moodString && Objects.equals(items, person.items);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, personName, surname, email, age, address, dateOfBirth, createdAt, mood, moodString, items);
     }
 }
